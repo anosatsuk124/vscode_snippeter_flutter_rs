@@ -51,3 +51,5 @@ app.*.map.json
 
 /target
 /.fvm/flutter_sdk
+/rust/src/bridge_generated/*
+!/rust/src/bridge_generated/mod.rs
