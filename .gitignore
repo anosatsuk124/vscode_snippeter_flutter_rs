@@ -53,3 +53,5 @@ app.*.map.json
 /.fvm/flutter_sdk
 /rust/src/bridge_generated/*
 !/rust/src/bridge_generated/mod.rs
+/lib/bridge_generated/*
+/macos/Runner/brdge_generated.h

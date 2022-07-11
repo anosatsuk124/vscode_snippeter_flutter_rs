@@ -3,7 +3,7 @@
 
 import 'dart:ffi';
 
-import 'package:git_mobile/bridge_generated/api.dart' as api_gen;
+import 'bridge_generated/api.dart' as api_gen;
 // Re-export the bridge so it is only necessary to import this file.
 import 'dart:io' as io;
 
