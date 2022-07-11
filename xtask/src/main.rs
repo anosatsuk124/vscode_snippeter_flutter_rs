@@ -1,4 +1,3 @@
-use clap::{App, Arg};
 use std::env;
 use std::path::Path;
 use std::process::Command;
@@ -6,11 +5,10 @@ use std::process::Command;
 fn main() {
     let pwd = env::var("PWD").unwrap();
 
-    let gen = App::new("Generator task");
-    let app: App = App::new("Task Runner").subcommand(gen);
+    let args: Vec<String> = std::env::args().collect();
 
-    match app.get_subcommands() {
-        gen => {
+    match args.get(1).expect("not enough arguments").as_str() {
+        "gen" => {
             let mut codegen = Command::new("flutter_rust_bridge_codegen");
             let rust_output_dir = format!("{}/rust/src/bridge_generated", &pwd);
             let rust_outputs = [
@@ -49,5 +47,6 @@ fn main() {
 
             codegen.spawn().expect("failed to gen").wait().unwrap();
         }
+        &_ => panic!("Unexpected arguments!"),
     }
 }
