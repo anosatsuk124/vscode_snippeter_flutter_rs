@@ -40,7 +40,7 @@ fn code_gen(pwd: &String, llvm: Option<&String>) {
     codegen.arg("--skip-add-mod-to-lib");
 
     if llvm.is_some() {
-        codegen.arg(format!("--llvm-path {}", &llvm.unwrap()));
+        codegen.args(["--llvm-path", &llvm.unwrap()]);
     }
 
     codegen.spawn().expect("failed to gen").wait().unwrap();
