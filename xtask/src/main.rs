@@ -47,8 +47,16 @@ fn code_gen(pwd: &String, llvm: Option<&String>) {
 }
 
 fn flutter_run(device: Option<&String>) {
-    let mut fvm = Command::new("fvm");
-    let mut flutter = Command::new("flutter");
+    let mut fvm = if cfg!(windows) {
+        Command::new("fvm.bat")
+    } else {
+        Command::new("fvm")
+    };
+    let mut flutter = if cfg!(windows) {
+        Command::new("flutter.bat")
+    } else {
+        Command::new("flutter")
+    };
     let args = match device {
         Some(dev) => vec!["run".to_string(), "-d".to_string(), format!("{}", &dev)],
         None => vec!["run".to_string()],
